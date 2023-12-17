@@ -2,6 +2,7 @@ import { Modal } from "react-bootstrap";
 import Header from "../../../SharedModule/Components/Header/Header.jsx";
 import { useContext, useEffect, useState } from "react";
 import imgNoData from '../../../assets/images/noData.png'
+import avatar from "../../../assets/images/imgAvatar.png"
 import axios from "axios";
 import NoData from "../../../SharedModule/Components/NoData/NoData.jsx";
 import { AuthContext } from "../../../Context/AuthContext.jsx";
@@ -16,9 +17,34 @@ export default function UsersList() {
   const [itemId , setItemId] = useState(0);
   const [pagesArray , setPagesArray]= useState([]);
   const [searchString , setSearchString] = useState("");
+  const [userDetails , setUserDetails] = useState({});
   const {requstHeaders , baseUrl} = useContext(AuthContext);
   const handleClose = () => setModelState("colse");
 
+
+  const showViewModel = (id)=>{
+    setItemId(id)
+    setModelState("view-model")
+    getUserDetails(id)
+  }
+
+    // *************** to view detail of recipe *****************
+    const getUserDetails = (id)=>{
+      console.log(id);
+
+    axios.get( `${baseUrl}/Users/${id}` , 
+    {
+      headers: requstHeaders,
+    })
+    .then((response)=>{
+      console.log(response?.data);
+      setUserDetails(response?.data);
+    
+    }).catch((error)=>{
+      // console.log(error.response.data.message);
+      error(error?.response?.data?.message || "Not Found Tag Ids")
+    })
+  }
 
   // *************** to show add model ***************
   const showDeleteModel = (id)=>{
@@ -55,7 +81,6 @@ export default function UsersList() {
 
   }
 
-
   // *************** to get all Users *****************
   const getAllUsers = (pageNo , name )=>{
     setIsLoding(true)
@@ -64,7 +89,7 @@ export default function UsersList() {
     {
       headers: requstHeaders,
       params : {
-        pageSize : 10,
+        pageSize : 7,
         pageNumber : pageNo,
         userName : name,
       }
@@ -80,6 +105,7 @@ export default function UsersList() {
       setIsLoding(false)
     })
   }
+
 
   useEffect(()=> {
     getAllUsers(1);
@@ -113,6 +139,26 @@ export default function UsersList() {
         </Modal.Body>
       </Modal>
 
+      {/* ************* this model to update recipe *********** */}
+      <Modal show={modelState == "view-model"} onHide={handleClose}>
+        <Modal.Body>
+            <h3 className='ms- mt-3 text-success fw-bold'>Usser Details</h3>
+
+          <div className='mt-4 userDetails'>
+            <div className='w-25 m-auto mt-4'>
+              {
+                userDetails?.imagePath ? <img className='w-100' src={`https://upskilling-egypt.com:443/`+userDetails.imagePath} alt="" /> 
+                : <img className='w-100 rounded-4' src={avatar} alt="" />
+              }
+            </div>
+            <h6 className="mt-4 fs-5"> <span className='text-success fs-'>User Name : </span> {userDetails?.userName}  </h6>
+            <h6 className="fs-5"> <span className='fs-6 text-success'>Role : </span> {userDetails?.group?.name} </h6>
+            <h6 className="fs-5"> <span className='fs-6 text-success'>Email : </span> {userDetails?.email}  </h6>
+            <h6 className="fs-5"> <span className='fs-6 text-success'>Phone Number : </span> {userDetails?.phoneNumber} </h6>
+            </div>
+          </Modal.Body>
+        </Modal>
+
       {/* **************** to content above table ****************** */}
       <div className='caption-category  mt-4 '>
 
@@ -125,10 +171,8 @@ export default function UsersList() {
 
       {/* **************** to display table ****************** */}
 
-
-        <input onChange={getNameValue} className='form-control w-100 my-4' placeholder='Search By Name....' type="text" />
+        <input onChange={getNameValue} className='form-control border-2 border-success w-100 my-4' placeholder='Search By Name....' type="text" />
         
-
       {/* **************** to display the table ****************** */}
       {!isLoding ? <div>
 
@@ -143,6 +187,7 @@ export default function UsersList() {
               <th scope="col"> User Name</th>
               <th scope="col">Image</th>
               <th scope="col">PhoneNumber</th>
+              <th scope="col">Role</th>
               <th className='text-center ' scope="col text-end">Actions</th>
             </tr>
           </thead>
@@ -154,12 +199,18 @@ export default function UsersList() {
                   <td>{user.userName}</td>
                   <td>
                     <div className='img-container'>
-                      <img className='w-100' src={`https://upskilling-egypt.com:443/`+user.imagePath} alt="" />
+                      {
+                        user.imagePath ? <img className='w-75' src={`https://upskilling-egypt.com:443/`+user.imagePath} alt="" /> 
+                        : <div className="userAvatar"> <img className="w-100" src={avatar} alt="" />  </div> 
+                      }
                     </div>
                   </td>
                   <td>{user.phoneNumber}</td>
+                  <td>{user.group.name}</td>
                   <td className='text-center'>
-                    <i onClick={()=> showDeleteModel(user.id)} className='fa ms-3 fs-5 text-danger fa-trash'></i>
+                    <i onClick={()=> showViewModel(user.id)} className='fa fs-6 text-success fa-eye'></i>
+                    {user.group.name == "SystemUser" ? <i onClick={()=> showDeleteModel(user.id)} className='fa ms-3 fs-6 text-danger fa-trash'></i> 
+                    : <i className='fa fs-6 iconHamsh fa-eye'></i> }
                   </td>
                 </tr>
 

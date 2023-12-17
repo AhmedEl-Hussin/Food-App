@@ -163,7 +163,9 @@ export default function Category() {
       <Modal show={modelState == "add-model"} onHide={handleClose}>
         
         <Modal.Body>
-          <h3 className='ms-3 mt-3 fw-bold'>Add Category</h3>
+          <div className='headerModel'>
+            <h3 className='ms-3 mt-3 text-center text-success fw-bold'>Add Category</h3>
+          </div>
 
           <form className='form w-100 m-auto mt-5' onSubmit={handleSubmit(onSubmit)}>
                 <div className='form-group mt-4 position-relative'>
@@ -211,8 +213,10 @@ export default function Category() {
       {/* ************* this model to update Category *********** */}
       <Modal show={modelState == "update-model"} onHide={handleClose}>
         <Modal.Body>
-          <h3 className='ms-3 mt-3 fw-bold'>Update Category</h3>
-
+          <div className='headerModel'>
+            <h3 className='ms-3 mt-3 text-center text-success fw-bold'>Update Category</h3>
+          </div>
+          
           <form className='form w-100 m-auto mt-5' onSubmit={handleSubmit(updateCategory)}>
                 <div className='form-group mt-4 position-relative'>
                   <input className='form-control' 
@@ -253,10 +257,13 @@ export default function Category() {
 
       </div>
 
+
+      {/* **************** to search by category name  ****************** */}
+      <input onChange={getNameValue} className='form-control border-2 border-success mb-4 w-100' placeholder='Search By Name....' type="text" />
+      
+
       {/* **************** to display the table ****************** */}
 
-      <input onChange={getNameValue} className='form-control mb-4 w-100' placeholder='Search By Name....' type="text" />
-      
       {!isLoding ? <div>
 
         {categoryList.length > 0 ? 
@@ -280,8 +287,8 @@ export default function Category() {
                   <td></td>
                   <td></td>
                   <td className='text-center'>
-                    <i onClick={()=> showUpdateeModel(category)} className='fa fs-5 text-success fa-edit'></i>
-                    <i onClick={()=> showDeleteModel(category.id)} className='fa ms-3 fs-5 text-danger fa-trash'></i>
+                    <i onClick={()=> showUpdateeModel(category)} className='fa fs-6 text-success fa-edit'></i>
+                    <i onClick={()=> showDeleteModel(category.id)} className='fa ms-3 fs-6 text-danger fa-trash'></i>
                   </td>
                 </tr>
               

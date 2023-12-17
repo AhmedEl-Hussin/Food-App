@@ -51,7 +51,7 @@ export default function Login({saveAdminData}) {
               </div>
 
               <form className='form w-75 m-auto mt-4' onSubmit={handleSubmit(onSubmit)}>
-                <h2>Log in</h2>
+                <h2 className="text-success">Log in</h2>
                 <p>Welcome Back! Please enter your details</p>
 
   {/* ************************* for input email ***************************** */}
@@ -98,7 +98,7 @@ export default function Login({saveAdminData}) {
                 </div>
 
                 <div className='rigester mt-3 d-flex justify-content-between'>
-                  <h6>Rigester Now?</h6>
+                  <h6 className="text-white">Rigester Now?</h6>
                   <a href="/resetPassword">Forget Password</a>
                 </div>
 

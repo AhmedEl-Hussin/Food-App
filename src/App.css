@@ -126,6 +126,7 @@
 .header{
     border-radius: 10px;
     background-color: #009247;
+    /* background-color: red; */
     color: white;
     justify-content: space-between;
 }
@@ -143,7 +144,6 @@
     font-size: 13px;
 }
 
-
 .img-container{
     width: 40px;
 }
@@ -160,6 +160,54 @@ table .test{
     font-size: 50px;
 }
 
+.userAvatar{
+    width: 40px;
+}
+
+.userDetails span {
+    font-size: 14px;
+}
+
+.iconHamsh{
+    color: transparent;
+    margin-left: 13px;
+}
+
+.headerModel h3{
+    position: relative;
+}
+
+.headerModel h3::after{
+    content: "";
+    width: 60px;
+    height: 4px;
+    background-color: green;
+    position: absolute ;
+    top: 38px;
+    left: 45%;
+    /* max-width: 50%; */
+}
+
+.form-group .icon{
+    position: absolute;
+    top: 11px;
+    left: 15px;
+    color: #494949;
+    color: #009247;
+}
+
+.headerImg {
+    -webkit-animation: mover 1s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+    @-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+    @keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
 
 
 
@@ -190,4 +238,5 @@ table .test{
         font-size: 10px;
     }
 }
+
 

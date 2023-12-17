@@ -147,7 +147,7 @@ export default function Recipes() {
         toast.success("Recipe Updated Successfuly")
       })
       .catch((error)=> {
-        // console.log(error?.response?.data?.message);
+        console.log(error?.response?.data?.message);
         toast.error(error?.response?.data?.message || "Recipe Not Added")
         setIsLoding(false);
       })
@@ -218,7 +218,9 @@ export default function Recipes() {
       <Modal show={modelState == "add-model"} onHide={handleClose}>
         
         <Modal.Body>
-          <h3 className='ms-3 mt-3 text-center fw-bold'>Add New Recipe</h3>
+          <div className='headerModel'>
+            <h3 className='ms-3 mt-3 text-center text-success fw-bold'>Add New Recipe</h3>
+          </div>
 
           <form className='form w-100 m-auto mt-4' onSubmit={handleSubmit(onSubmit)}>
                 
@@ -354,7 +356,9 @@ export default function Recipes() {
       <Modal show={modelState == "update-model"} onHide={handleClose}>
         
         <Modal.Body>
-          <h3 className='ms-3 mt-3 text-center fw-bold'>Add New Recipe</h3>
+          <div className='headerModel'>
+            <h3 className='ms-3 mt-3 text-center text-success fw-bold'>Update Recipe</h3>
+          </div>
 
           <form className='form w-100 m-auto mt-4' onSubmit={handleSubmit(updateRecipe)}>
                 
@@ -488,9 +492,11 @@ export default function Recipes() {
       {/* **************** to view search inputs ****************** */}
       <div className='d-flex'>
 
-        <input onChange={getRecipeValue} className='form-control w-50' placeholder='Search By Name.....' type="text" />
+      {/* **************** to search by recipe name  ****************** */}      
+        <input onChange={getRecipeValue} className='form-control border-2 border-success w-50' placeholder='Search By Name.....' type="text" />
         
-        <select onChange={getTagValue} className='form-select w-25 ms-2'>
+      {/* **************** to search by tag id  ****************** */}      
+        <select onChange={getTagValue} className='form-select border-2 border-success w-25 ms-2'>
           <option value="" className='text-muted'>Select tag</option>
             {tagIds.map((getId , index)=> (
               <option key={index} value={getId.id}>
@@ -499,7 +505,8 @@ export default function Recipes() {
             ))} 
         </select>
 
-        <select onChange={getcategoryValue} className='form-select w-25 ms-2'>
+      {/* **************** to search by category id  ****************** */}      
+        <select onChange={getcategoryValue} className='form-select border-2 border-success w-25 ms-2'>
           <option value="" className='text-muted'>Select category</option>
             {categoryIds.map((getId , index)=> (
               <option key={index} value={getId.id}>
@@ -511,7 +518,6 @@ export default function Recipes() {
       </div>
 
       {/* **************** to display the table ****************** */}
-      
       {!isLoding ? <div>
 
         {recipesList.length > 0 ? 
@@ -547,8 +553,8 @@ export default function Recipes() {
                   <td> {recipe.tag.name} </td>
             
                   <td className='text-center'>
-                    <i onClick={()=> showUpdateModels(recipe)} className='fa fs-5 text-success fa-edit'></i>
-                    <i onClick={()=> showDeleteModel(recipe.id)} className='fa ms-3 fs-5 text-danger fa-trash'></i>
+                    <i onClick={()=> showUpdateModels(recipe)} className='fa fs-6 text-success fa-edit'></i>
+                    <i onClick={()=> showDeleteModel(recipe.id)} className='fa ms-3 fs-6 text-danger fa-trash'></i>
                   </td>
                 </tr>
             ))} 

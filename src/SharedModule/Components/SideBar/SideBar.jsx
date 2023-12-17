@@ -1,7 +1,7 @@
 import { Modal } from "react-bootstrap";
 import UpdatePassword from "../../../AuthModule/Components/UpdatePassword/UpdatePassword.jsx";
 import { Menu, MenuItem, Sidebar } from "react-pro-sidebar";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import logo from '../../../assets/images/3.png'
 import { useState } from "react";
 
