@@ -26,7 +26,7 @@ export default function Login() {
 
                         <form className='form m-auto mt-4 '>
 
-                            <h3>Log In</h3>
+                            <h3>Ahmed</h3>
                             <p className='par'>Welcome Back! Please enter your details</p>
 
     {/* ************************* for input email ***************************** */}
