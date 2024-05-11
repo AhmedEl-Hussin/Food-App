@@ -1,0 +1,112 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.publicColor{
+    color: #189152;
+}
+
+.Auth-container{
+    width: 100%;
+    height: 100vh;
+    background-image: url(./assets/Images/bg.jpeg);
+    background-position: center center;
+    background-size: cover;
+}
+
+.Auth-container .overLay{
+    width: 100%;
+    height: 100vh;
+    background:linear-gradient(51deg, rgba(55, 140, 47, 0.63) -22.39%, rgba(0, 0, 0, 0.62) 61.76%);
+}
+
+.Auth-container .caption{
+    width: 60%;
+    border-radius: 15px;
+    /* padding: 30px 0; */
+}
+
+.Auth-container .caption .imageLogo img{
+    width: 35%;
+}
+
+.Auth-container .form{
+    width: 80%;
+}
+
+.Auth-container .form .par{
+    font-size: 15px;
+    color: rgb(156, 156, 156);
+}
+
+.Auth-container .form input::placeholder{
+    color: rgb(174, 173, 173);
+}
+
+.Auth-container .form .iconInput{
+    width: 40px;
+    height: 42px;
+    background-color: rgb(222, 222, 222);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.Auth-container .form .iconInput i{
+    color: rgb(93, 92, 92);
+}
+
+.Auth-container .form .iconEya{
+    position: absolute;
+    top: 37px;
+    right: 10px;
+}
+
+.Auth-container .form .register a{
+    text-decoration: none;
+}
+
+.form button{
+    background-color: #4aa35a;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.form button:hover{
+    background-color: #4aa35a;
+    color: white;
+}
+
+.Auth-container .captionRegister{
+    width: 80%;
+    border-radius: 15px;
+    /* padding: 30px 0; */
+}
+
+.Auth-container .captionRegister .imageLogo img{
+    width: 35%;
+}
+
+.Auth-container .captionRegister .form .iconEya{
+    position: absolute;
+    top: 37px;
+    right: 20px;
+}
+
+@media screen and (max-width:800px) {
+
+    .Auth-container .caption{
+        width: 80%;
+        background-color: white !important;
+    }
+
+    .Auth-container , .Auth-container .overLay {
+        height: 103vh;
+    }
+}
