@@ -7,23 +7,23 @@ export default function MasterLayout() {
     return (
         
         <>
-        <NavBar/>
 
             <div className='d-flex'>
 
-                <div className='bg-info'>
+                <div className=''>
                     <SideBar/>
                 </div> 
 
-                <div className='w-100 bg-danger'>
+                <div className='w-100'>
+                    <div className='bg-'>
+                    <NavBar />
 
-                    <div className=''>
                         <Outlet/>
                     </div>
-
                 </div>
 
             </div>
+
         </>
 
     )

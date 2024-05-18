@@ -6,6 +6,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.js'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'react-toastify/dist/ReactToastify.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+
+AOS.init();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
